@@ -705,27 +705,26 @@ Ext.extend(MODx.combo.Browser,Ext.form.TriggerField,{
         if (this.disabled){
             return false;
         }
-
-            this.browser = MODx.load({
-                xtype: 'modx-browser'
-                ,closeAction: 'close'
-                ,id: Ext.id()
-                ,multiple: true
-                ,source: this.config.source || MODx.config.default_media_source
-                ,hideFiles: this.config.hideFiles || false
-                ,rootVisible: this.config.rootVisible || false
-                ,allowedFileTypes: this.config.allowedFileTypes || ''
-                ,wctx: this.config.wctx || 'web'
-                ,openTo: this.config.openTo || ''
-                ,rootId: this.config.rootId || '/'
-                ,hideSourceCombo: this.config.hideSourceCombo || false
-                ,listeners: {
-                    'select': {fn: function(data) {
-                        this.setValue(data.relativeUrl);
-                        this.fireEvent('select',data);
-                    },scope:this}
-                }
-            });
+        this.browser = MODx.load({
+            xtype: 'modx-browser'
+            ,closeAction: 'close'
+            ,id: Ext.id()
+            ,multiple: true
+            ,source: this.config.source || MODx.config.default_media_source
+            ,hideFiles: this.config.hideFiles || false
+            ,rootVisible: this.config.rootVisible || false
+            ,allowedFileTypes: this.config.allowedFileTypes || ''
+            ,wctx: this.config.wctx || 'web'
+            ,openTo: this.config.openTo || ''
+            ,rootId: this.config.rootId || '/'
+            ,hideSourceCombo: this.config.hideSourceCombo || false
+            ,listeners: {
+                'select': {fn: function(data) {
+                    this.setValue(data.relativeUrl);
+                    this.fireEvent('select',data);
+                },scope:this}
+            }
+        });
         this.browser.show(btn);
         return true;
     }
@@ -924,23 +923,23 @@ MODx.combo.Resource = function(config) {
     config = config || {};
 
     Ext.applyIf(config,{
-        url         : MODx.config.connector_url,
-        baseParams  : {
-            action      : 'Resource/GetList',
-            combo       : 1,
-            limit       : 0,
-            ignore      : config.currentid || ''
+        url: MODx.config.connector_url,
+        baseParams: {
+            action: 'Resource/GetList',
+            combo: 1,
+            limit: 0,
+            ignore: config.currentid || ''
         },
-        fields      : ['id', 'pagetitle', 'longtitle', 'context_key', 'context_name', 'time'],
-        name        : 'resource',
-        hiddenName  : 'resource',
-        displayField : 'pagetitle',
-        valueField  : 'id',
-        pageSize    : 20,
-        allowBlank  : true,
-        editable    : true,
-        typeAhead   : true,
-        tpl         : new Ext.XTemplate('<tpl for=".">' +
+        fields: ['id', 'pagetitle', 'longtitle', 'context_key', 'context_name', 'time'],
+        name: 'resource',
+        hiddenName: 'resource',
+        displayField: 'pagetitle',
+        valueField: 'id',
+        pageSize: 20,
+        allowBlank: true,
+        editable: true,
+        typeAhead: true,
+        tpl: new Ext.XTemplate('<tpl for=".">' +
             '<tpl if="!Ext.isEmpty(this.getGroup(values.context_name, values.time))">' +
                 '<div class="x-combo-list-group">{this.label}</div>' +
             '</tpl>' +
@@ -948,9 +947,9 @@ MODx.combo.Resource = function(config) {
                 '{pagetitle:htmlEncode}' +
             '</div>' +
         '</tpl>', {
-            group    : null,
-            label    : null,
-            getGroup : function(label, time) {
+            group: null,
+            label: null,
+            getGroup: function(label, time) {
                 var group = time + '_' + label;
 
                 if (group !== this.group) {
@@ -960,16 +959,15 @@ MODx.combo.Resource = function(config) {
                         return this.label = label;
                     }
                 }
-
                 return null;
             }
         }),
-        parentcmp   : null,
-        contextcmp  : null,
-        listeners   : {
-            'change'    : {
-                fn          : this.setParentValue,
-                scope       : this
+        parentcmp: null,
+        contextcmp: null,
+        listeners: {
+            'change': {
+                fn: this.setParentValue,
+                scope: this
             }
         }
     });
@@ -1000,7 +998,6 @@ Ext.extend(MODx.combo.Resource, MODx.combo.ComboBox, {
         }
     }
 });
-
 Ext.reg('modx-combo-resource', MODx.combo.Resource);
 
 
