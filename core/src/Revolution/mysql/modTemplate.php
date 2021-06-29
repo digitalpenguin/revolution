@@ -16,7 +16,7 @@ class modTemplate extends \MODX\Revolution\modTemplate
         'fields' =>
         array (
             'templatename' => '',
-            'description' => 'Template',
+            'description' => '',
             'editor_type' => 0,
             'category' => 0,
             'icon' => '',
@@ -42,10 +42,10 @@ class modTemplate extends \MODX\Revolution\modTemplate
             'description' =>
             array (
                 'dbtype' => 'varchar',
-                'precision' => '191',
+                'precision' => '255',
                 'phptype' => 'string',
                 'null' => false,
-                'default' => 'Template',
+                'default' => '',
             ),
             'editor_type' =>
             array (
@@ -67,7 +67,7 @@ class modTemplate extends \MODX\Revolution\modTemplate
             'icon' =>
             array (
                 'dbtype' => 'varchar',
-                'precision' => '191',
+                'precision' => '255',
                 'phptype' => 'string',
                 'null' => false,
                 'default' => '',
@@ -116,7 +116,7 @@ class modTemplate extends \MODX\Revolution\modTemplate
             'static_file' =>
             array (
                 'dbtype' => 'varchar',
-                'precision' => '191',
+                'precision' => '255',
                 'phptype' => 'string',
                 'null' => false,
                 'default' => '',

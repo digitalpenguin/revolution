@@ -180,7 +180,7 @@ class modResource extends modAccessibleSimpleObject implements modResourceInterf
     {
         /* setup the various options */
         $iconv = function_exists('iconv');
-        $mbext = function_exists('mb_strlen') && (boolean)$xpdo->getOption('use_multibyte', false);
+        $mbext = function_exists('mb_strlen') && (boolean)$xpdo->getOption('use_multibyte', $options, false);
         $charset = strtoupper((string)$xpdo->getOption('modx_charset', $options, 'UTF-8'));
         $delimiter = $xpdo->getOption('friendly_alias_word_delimiter', $options, '-');
         $delimiters = $xpdo->getOption('friendly_alias_word_delimiters', $options, '-_');
@@ -906,7 +906,7 @@ class modResource extends modAccessibleSimpleObject implements modResourceInterf
                 $query = new xPDOCriteria($this->xpdo, $sql, $bindings);
                 if ($query->stmt && $query->stmt->execute()) {
                     while ($row = $query->stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $policy['modAccessResourceGroup'][$row['target']][] = [
+                        $policy[modAccessResourceGroup::class][$row['target']][] = [
                             'principal' => $row['principal'],
                             'authority' => $row['authority'],
                             'policy' => $row['data'] ? $this->xpdo->fromJSON($row['data'], true) : [],
